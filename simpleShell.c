@@ -7,9 +7,9 @@ int main() {
     /* read_command(&command, &params) */
     /* pid = fork() */
     /* if (pid < 0) */
-      */ error_routine() */
+      /* error_routine() */
     /* else if (pid) */
-      */ waitpid(-1, &status, 0) */
+      /* waitpid(-1, &status, 0) */
     /* else */
-      */ execve(command, params, 0) */
+      /* execve(command, params, 0) */
 }
