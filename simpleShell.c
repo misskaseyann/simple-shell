@@ -7,8 +7,8 @@
 
 /* program start */
 int main() {
-	while(1){;
-		
+	while(1){
+
 		pid_t pid;
 		int status;
 		char input[100]; 
