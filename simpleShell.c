@@ -7,8 +7,8 @@
 
 /* program start */
 int main() {
-	while(1){
-
+	while(1){;
+		
 		pid_t pid;
 		int status;
 		char input[100]; 
@@ -39,12 +39,12 @@ int main() {
 		else{
 			printf("about to execute. . . \n"); //for testing
 
-			char* cmd[3]; //trying stuff
+			char *cmd[3]; //trying stuff
 			cmd[0] = word_1;
 			cmd[1] = word_2;
 			cmd[2] = NULL;
 
-			if (execvp(cmd[1], cmd) < 0) { //can't get execvp to work >:(
+			if (execvp(cmd[1], cmd) < 0) { 
 				perror("exec failed");
 				exit(1);
 			}
