@@ -18,6 +18,7 @@ int main() {
 		printf("tinyshell ~ ");
 		pid_t pid;
 		int status;
+		struct rusage usage;
 
 		char input[100];
 		char *params[15];
@@ -70,6 +71,9 @@ int main() {
 		else if (pid) {
 			//printf("waiting. . . \n"); //for testing
 			waitpid(-1, &status, 0);
+			getrusage(status, &usage);
+			printf("User CPU time: %ld.%061d seconds\n", usage.ru_utime.tv_sec, usage.ru_utime.tv_usec);
+			printf("Context switches: %ld\n", usage.ru_nivcsw);
 		}
 
 		/* This is the child, execute command. */
