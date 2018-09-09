@@ -1,31 +1,53 @@
 #include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/wait.h>
 
 /* program start */
 int main() {
-	while(true){
-		pid_t pid;
-		char command = 'ls'
-		char params = ''
+	while(1){
 
-		scanf("%s", &input);
-		if (input == 'quit'){
-			break;
+		pid_t pid;
+		int status;
+		char input[100]; 
+		char *word_1, *word_2;
+		char *done = "quit";
+
+		fgets(input, 100, stdin);
+		word_1 = strtok (input, " ");
+		word_2 = strtok (NULL, " "); 
+
+		if (*word_1 == *done){
+			exit(1);
 		}
-	//read_command(&command, &params) //unsure of reading the command part
+
 
 		pid = fork();
+
 		if (pid < 0){
-			//error_routine()
-			printf("halp\n");
-			printf("fix it\n");
+			printf("it broke\n");
+			exit(1);
 		}
 
 		else if (pid){
-			waitpid(-1, &status, 0)
+			printf("waiting. . . \n"); //for testing
+			wait(&status);
 		}
 
 		else{
-			execve(command, params, 0)
+			printf("about to execute. . . \n"); //for testing
+
+			char *cmd[3]; //trying stuff
+			cmd[0] = word_1;
+			cmd[1] = word_2;
+			cmd[2] = NULL;
+
+			if (execvp(cmd[1], cmd) < 0) { 
+				perror("exec failed");
+				exit(1);
+			}
 		}
 
 	}
