@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/wait.h>
+#include <sys/time.h>
+#include <sys/resource.h>
 
 /* Simple command interpreter or shell. */
 int main() {
@@ -72,7 +74,7 @@ int main() {
 			//printf("waiting. . . \n"); //for testing
 			waitpid(-1, &status, 0);
 			getrusage(status, &usage);
-			printf("User CPU time: %ld.%061d seconds\n", usage.ru_utime.tv_sec, usage.ru_utime.tv_usec);
+			printf("User CPU time: %ld.%06ld seconds\n", usage.ru_utime.tv_sec, usage.ru_utime.tv_usec);
 			printf("Context switches: %ld\n", usage.ru_nivcsw);
 		}
 
